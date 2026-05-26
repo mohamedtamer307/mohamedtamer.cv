@@ -251,6 +251,9 @@ alert("✅ Message sent successfully");
 
 form.reset();
 
+/* تحديث شريط الرسائل مباشرة */
+loadTickerMessages();
+
 }
 
 sending = false;
@@ -431,26 +434,18 @@ const { data, error } = await supabase
 .limit(10);
 
 if(error){
-
 console.log(error);
 return;
-
 }
 
-const ticker =
-document.getElementById("tickerMessages");
+const track =
+document.getElementById("tickerTrack");
 
-const tickerClone =
-document.getElementById("tickerMessagesClone");
-
-if(!ticker || !tickerClone) return;
+if(!track) return;
 
 if(data.length === 0){
 
-ticker.innerHTML =
-"<span>No messages yet</span>";
-
-tickerClone.innerHTML =
+track.innerHTML =
 "<span>No messages yet</span>";
 
 return;
@@ -458,16 +453,15 @@ return;
 }
 
 const messages = data.map(msg => `
-<span>
+<span class="ticker-item">
 <b>${msg.name}:</b>
 ${msg.message}
 </span>
 `).join("");
 
-ticker.innerHTML = messages;
+/* تكرار الرسائل مرتين */
 
-/* نسخة ثانية للحركة السلسة */
-
+track.innerHTML = messages + messages;
 
 }catch(err){
 
