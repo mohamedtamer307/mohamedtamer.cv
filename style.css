@@ -364,7 +364,7 @@ body.dark .visitor-counter{
 }
 
 /* =========================
-   NEWS TICKER PERFECT LOOP
+   NEWS TICKER FINAL PERFECT
 ========================= */
 
 .news-ticker{
@@ -408,8 +408,11 @@ body.dark .visitor-counter{
 
 .ticker-track{
     display:flex;
+    align-items:center;
     width:max-content;
-    animation:tickerLoop 5s linear infinite;
+    flex-wrap:nowrap;
+    white-space:nowrap;
+    animation:tickerLoop 20s linear infinite;
     will-change:transform;
 }
 
@@ -418,26 +421,39 @@ body.dark .visitor-counter{
 .ticker-content{
     display:flex;
     align-items:center;
-    gap:60px;
-    padding-right:60px;
-    flex-shrink:0;
+    flex-wrap:nowrap;
     white-space:nowrap;
+    flex-shrink:0;
 }
 
-/* النص */
+/* الرسالة */
 
-.ticker-content span{
+.ticker-item{
+    display:inline-flex;
+    align-items:center;
+    white-space:nowrap;
     color:#fff;
     font-size:14px;
-    white-space:nowrap;
+    margin-right:40px;
 }
 
-.ticker-content b{
+/* اسم الشخص */
+
+.ticker-item b{
     color:#0ea5e9;
-    margin-inline-end:6px;
+    margin-right:6px;
 }
 
-/* الحركة السلسة */
+/* الفاصل */
+
+.ticker-item::after{
+    content:"✦";
+    margin-left:40px;
+    color:#0ea5e9;
+    opacity:.7;
+}
+
+/* الحركة */
 
 @keyframes tickerLoop{
 
@@ -451,7 +467,7 @@ body.dark .visitor-counter{
 
 }
 
-/* توقف عند المرور */
+/* عند المرور بالماوس */
 
 .news-ticker:hover .ticker-track{
     animation-play-state:paused;
@@ -459,99 +475,79 @@ body.dark .visitor-counter{
 
 /* RTL */
 
-/* =========================
-   RTL FIX PERFECT
-========================= */
-
 .rtl-mode .news-ticker{
     direction:ltr;
 }
 
 .rtl-mode .ticker-track{
-    animation:tickerLoopRTL 5s linear infinite;
+    animation:tickerLoopRTL 20s linear infinite;
 }
 
 @keyframes tickerLoopRTL{
 
     0%{
-        transform:translateX(0);
+        transform:translateX(-50%);
     }
 
     100%{
-        transform:translateX(50%);
+        transform:translateX(0);
     }
 
 }
 
-/* الرسالة */
-
-.visitor-message{
-    margin-top:10px;
-    font-size:15px;
-    color:white;
-    opacity:.95;
-    padding:0 10px;
-}
-
-/* الموبايل */
+/* موبايل */
 
 @media(max-width:768px){
 
-.news-ticker{
-    width:100%;
-    max-width:100%;
-    border-radius:14px;
-}
+    .ticker-title{
+        font-size:12px;
+        padding:10px 12px;
+    }
 
-.ticker-title{
-    font-size:12px;
-    padding:10px 12px;
-}
+    .ticker-wrap{
+        height:42px;
+    }
 
-.ticker-wrap{
-    height:42px;
-}
+    .ticker-track{
+        animation-duration:15s;
+    }
 
-.ticker-track{
-    animation-duration:18s;
-}
+    .ticker-item{
+        font-size:12px;
+        margin-right:25px;
+    }
 
-.ticker-content{
-    gap:30px;
-    padding-right:30px;
-}
-
-.ticker-content span{
-    font-size:12px;
-}
+    .ticker-item::after{
+        margin-left:25px;
+    }
 
 }
 
-/* الشاشات الصغيرة */
+/* شاشات صغيرة */
 
 @media(max-width:480px){
 
-.ticker-title{
-    font-size:11px;
-    padding:8px 10px;
-}
+    .ticker-title{
+        font-size:11px;
+        padding:8px 10px;
+    }
 
-.ticker-wrap{
-    height:38px;
-}
+    .ticker-wrap{
+        height:38px;
+    }
 
-.ticker-track{
-    animation-duration:14s;
-}
+    .ticker-track{
+        animation-duration:12s;
+    }
 
-.ticker-content span{
-    font-size:11px;
-}
+    .ticker-item{
+        font-size:11px;
+        margin-right:18px;
+    }
 
-.ticker-content{
-    gap:20px;
-    padding-right:20px;
-}
+    .ticker-item::after{
+        margin-left:18px;
+    }
 
 }
 
